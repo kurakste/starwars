@@ -1,12 +1,13 @@
 import './styles/main.scss';
-import mt from 'mousetrap';
 import App from './app';
+import Character from './objects/figure';
 
-mt.bind('4', () => console.log('!!!!'));
-const canva = document.getElementById('cbox', 'lightgray');
+const character = new Character(10,10, 'green');
+const canva = document.getElementById('cbox');
 
-const app = new App(canva, 'lightgrey');
-
-console.log(app);
-
+const app = new App(canva, 'grey');
+app.addMustBeDraw(character);
+app.addKeyboardListener(character);
 app.init();
+
+setInterval(app.redraw, 100);

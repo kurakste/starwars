@@ -4,13 +4,18 @@ export default function App(cont, bg) {
   const width = cont.width;
   const height = cont.height;
   const backgroud = bg;
+  let that = null;
 
-  const objects = []; 
+  const mustBeDraw = []; 
+  const keyboarListener = [];
 
   const out = {
     init: function () {
+      that = this;
       console.log('init');
       this.clear();
+      this.redraw();
+      document.addEventListener('keypress', evnt => this.keyboardEventFired(evnt.code));
     },
 
     clear: function () {
@@ -18,14 +23,24 @@ export default function App(cont, bg) {
       ctx.fillRect(0, 0, width, height);
     },
  
-    drowObjects: function() {
-      console.log('I drow object!');
-      objects.map(el => el.droow(ctx));
+    redraw: function() {
+      that.clear();
+      mustBeDraw.map(el => el.draw(ctx));
     },
 
-    addObject: function(obj) {
-      objects.push(obj);
+    keyboardEventFired(key) {
+      console.log('in app keyboard event fierd', key);
+      keyboarListener.map(el => el.onKeyboardEvent(key));
     },
+
+    addMustBeDraw: function(obj) {
+      mustBeDraw.push(obj);
+    },
+
+    addKeyboardListener(obj) {
+      keyboarListener.push(obj);
+    },
+
 
   }
 
