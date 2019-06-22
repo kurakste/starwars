@@ -5,9 +5,9 @@ import Character from './objects/figure';
 const character = new Character(10,10, 'green');
 const canva = document.getElementById('cbox');
 
-const app = new App(canva, 'grey');
+const app = new App(canva, 'lightblue');
 app.addMustBeDraw(character);
 app.addKeyboardListener(character);
 app.init();
 
-setInterval(app.redraw, 100);
+setInterval(app.redraw, 50);

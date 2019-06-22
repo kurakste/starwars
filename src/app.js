@@ -1,3 +1,4 @@
+
 export default function App(cont, bg) {
   const container = cont;
   const ctx = container.getContext('2d');
