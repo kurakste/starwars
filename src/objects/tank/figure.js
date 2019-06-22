@@ -1,8 +1,9 @@
 import sprites from '../../img/sprites-full.png';
 import { tankDown, tankLeft, tankRight, tankUp } from './tankMatrix';
 import { fire, offsetX, offsetY } from './fireMatrix';
+import { throws } from 'assert';
 
-export default function Chrater(xx, yy, col) {
+export default function Chrater(xx, yy, app) {
 
   let x = xx;
   let y = yy;
@@ -13,6 +14,8 @@ export default function Chrater(xx, yy, col) {
   let model = tankUp;
   let fireState = 0;
   let dir = 'up';
+  const speedy = 5;
+  const speedx = speedy * 1.5;
 
   const out = {
     draw: function (ctx) {
@@ -39,25 +42,26 @@ export default function Chrater(xx, yy, col) {
         KeyJ: () => {
           model = tankRight;
           dir = 'right';
-          x = x - 7;
+          x = x - speedx;
         },
         KeyK: () => {
           dir = 'down'
-          y = y + 5;
+          y = y + speedy;
           model = tankDown;
         },
         KeyL: () => {
           dir = 'up'
           model = tankUp;
-          y = y - 5;
+          y = y - speedy;
         },
         Semicolon: () => {
           dir = 'left';
-          x = x + 7;
+          x = x + speedx;
           model = tankLeft;
         },
         Space: () => {
-          fireState = 1;
+          this.fire();
+          console.log(app);
         }
       };
 
@@ -66,8 +70,8 @@ export default function Chrater(xx, yy, col) {
       if (spi > spiMax) spi = 1;
     },
 
-    onFire: function () {
-
+    fire: function () {
+      fireState = 1;
     },
 
     move: function (xx, yy) {
