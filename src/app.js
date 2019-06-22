@@ -7,8 +7,11 @@ export default function App(cont, bg) {
   const backgroud = bg;
   let that = null;
 
-  const mustBeDraw = []; 
-  const keyboarListener = [];
+  const observers = {
+    draw: [],
+    tic: [],
+    keyboard:[]
+  };
 
   const out = {
     init: function () {
@@ -19,6 +22,11 @@ export default function App(cont, bg) {
       document.addEventListener('keypress', evnt => this.keyboardEventFired(evnt.code));
     },
 
+    addFigure: function(figure) {
+      figure['subscrition'] && figure['subscrition']
+        .map(el => observers[el].push(figure)); 
+    },
+
     clear: function () {
       ctx.fillStyle = backgroud; //backgroud;
       ctx.fillRect(0, 0, width, height);
@@ -26,22 +34,13 @@ export default function App(cont, bg) {
  
     redraw: function() {
       that.clear();
-      mustBeDraw.map(el => el.draw(ctx));
+      observers['draw'].map(el => el.draw(ctx));
     },
 
     keyboardEventFired(key) {
       console.log('in app keyboard event fierd', key);
-      keyboarListener.map(el => el.onKeyboardEvent(key));
+      observers['keyboard'].map(el => el.onKeyboardEvent(key));
     },
-
-    addMustBeDraw: function(obj) {
-      mustBeDraw.push(obj);
-    },
-
-    addKeyboardListener(obj) {
-      keyboarListener.push(obj);
-    },
-
 
   }
 

@@ -1,7 +1,6 @@
 import sprites from '../../img/sprites-full.png';
 import { tankDown, tankLeft, tankRight, tankUp } from './tankMatrix';
 import { fire, offsetX, offsetY } from './fireMatrix';
-import { throws } from 'assert';
 
 export default function Chrater(xx, yy, app) {
 
@@ -18,13 +17,13 @@ export default function Chrater(xx, yy, app) {
   const speedx = speedy * 1.5;
 
   const out = {
+    subscrition: ['draw', 'keyboard'],
     draw: function (ctx) {
       ctx.drawImage(
         img, model[spi].x, model[spi].y, model[spi].width, model[spi].height, x, y,
         model[spi].width, model[spi].height
       );
       if (fireState !== 0) {
-        console.log('===>', dir);
         ctx.drawImage(
           img, fire[fireState - 1].x,
           fire[fireState - 1].y,
