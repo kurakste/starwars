@@ -1,7 +1,7 @@
 import sprites from '../../img/sprites-full.png';
+import ball from './ballMatrix';
 
-export default function Ball(xx, yy, speed, app) {
-
+export default function Ball(xx, yy, speed, directions, app) {
   let x = xx;
   let y = yy;
   const speedy = speed;
@@ -11,14 +11,34 @@ export default function Ball(xx, yy, speed, app) {
   let spi = 0;
   let spiMax = 5;
   let fireState = 0;
-  let dir = 'up';
+  let dir = directions || 'right';
 
   const out = {
-    subscrition: ['draw', 'keyboard'],
+    name: 'ball',
+    subscrition: ['draw', 'ticker'],
     draw: function (ctx) {
-      console.log('ball was drawed');
+      ctx.drawImage(
+        img, ball[dir].x, ball[dir].y, ball[dir].width, ball[dir].height, x, y,
+        ball[dir].width, ball[dir].height);
+    },
+    go() {
+      const movement = {
+        right() { x = x - speedx},
+        left() { x = x + speedx },
+        up() { y = y - speedy },
+        down() { y = y + speedy },
+      }
+      console.log('------ go fierd:', dir);
+      movement[dir]();
+      this.outOfFieldCheck()
+    },
+    outOfFieldCheck() {
+      console.log('on of field check: ', app.width);
+      if (x <= 0 || x>= app.width || y<=0 || y>=app.width) app.removeFigure(this);
+    },
+    ticker() {
+      this.go();
     }
-
   }
 
   return out;

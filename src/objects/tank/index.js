@@ -1,9 +1,9 @@
 import sprites from '../../img/sprites-full.png';
 import { tankDown, tankLeft, tankRight, tankUp } from './tankMatrix';
 import { fire, offsetX, offsetY } from './fireMatrix';
+import Ball from '../ball';
 
 export default function Chrater(xx, yy, app) {
-
   let x = xx;
   let y = yy;
   const img = new Image();
@@ -17,6 +17,7 @@ export default function Chrater(xx, yy, app) {
   const speedx = speedy * 1.5;
 
   const out = {
+    name: 'tank',
     subscrition: ['draw', 'keyboard'],
     draw: function (ctx) {
       ctx.drawImage(
@@ -71,6 +72,8 @@ export default function Chrater(xx, yy, app) {
 
     fire: function () {
       fireState = 1;
+      const ball = new Ball(x,y, speedx+10, dir, app);
+      app.addFigure(ball); 
     },
 
     move: function (xx, yy) {
