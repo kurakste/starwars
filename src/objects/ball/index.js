@@ -9,9 +9,6 @@ export default function Ball(xx, yy, speed, directions, app) {
   const speedx = speedy * 1.5;
   const img = new Image();
   img.src = sprites;
-  let spi = 0;
-  let spiMax = 5;
-  let fireState = 0;
   let dir = directions || 'right';
 
   const out = {
@@ -29,12 +26,10 @@ export default function Ball(xx, yy, speed, directions, app) {
         up() { y = y - speedy },
         down() { y = y + speedy },
       }
-      console.log('------ go fierd:', dir);
       movement[dir]();
       this.outOfFieldCheck()
     },
     outOfFieldCheck() {
-      console.log('on of field check: ', app.width);
       if (x <= 0 || x>= app.width || y<=0 || y>=app.width) app.removeFigure(this);
     },
     ticker() {
