@@ -27,6 +27,7 @@
     "webpack-dev-server": "^3.7.2"
   },
   "dependencies": {
+    "crypto-random-string": "^3.0.1",
     "mousetrap": "^1.6.3",
     "pixi.js": "^5.0.4"
   }

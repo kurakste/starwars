@@ -2,6 +2,7 @@ import sprites from '../../img/sprites-full.png';
 import { tankDown, tankLeft, tankRight, tankUp } from './tankMatrix';
 import { fire, offsetX, offsetY } from './fireMatrix';
 import Ball from '../ball';
+import randomStr from 'crypto-random-string';
 
 export default function Chrater(xx, yy, app) {
   let x = xx;
@@ -15,9 +16,10 @@ export default function Chrater(xx, yy, app) {
   let dir = 'up';
   const speedy = 5;
   const speedx = speedy * 1.5;
+  const id = randomStr({length: 20});
 
   const out = {
-    name: 'tank',
+    name: id,
     subscrition: ['draw', 'keyboard'],
     draw: function (ctx) {
       ctx.drawImage(
