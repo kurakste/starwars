@@ -1,5 +1,6 @@
 import sprites from '../../img/sprites-full.png';
 import ball from './ballMatrix';
+import spriteLoader from '../../helpers/spriteLoader';
 
 export default function Ball(xx, yy, speed, directions, app) {
   let x = xx;
