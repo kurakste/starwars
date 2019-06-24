@@ -1,6 +1,4 @@
-import sprites from '../../img/sprites-full.png';
 import ball from './ballMatrix';
-import spriteLoader from '../../helpers/spriteLoader';
 import randomStr from 'crypto-random-string';
 
 export default function Ball(xx, yy, speed, directions, app) {
@@ -8,10 +6,9 @@ export default function Ball(xx, yy, speed, directions, app) {
   let y = yy;
   const speedy = speed;
   const speedx = speedy * 1.5;
-  const img = new Image();
-  img.src = sprites;
   let dir = directions || 'right';
   const id = randomStr({length: 20});
+  const img = app.sprites;
 
   const out = {
     name: id,

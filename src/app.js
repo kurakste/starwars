@@ -1,4 +1,4 @@
-export default function App(cont, bg) {
+export default function App(cont, bg, sprt) {
   const container = cont;
   const ctx = container.getContext('2d');
   const backgroud = bg;
@@ -11,6 +11,7 @@ export default function App(cont, bg) {
   };
   
   const out = {
+    sprites: sprt, 
     width: cont.width,
     height: cont.height, 
     init: function () {
