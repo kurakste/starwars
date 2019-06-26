@@ -49,8 +49,8 @@ export default function Chrater(xx, yy, app) {
         },
         KeyK: () => {
           dir = 'down'
-          y = y + speedy;
           model = tankDown;
+          y = y + speedy;
         },
         KeyL: () => {
           dir = 'up'
@@ -59,8 +59,8 @@ export default function Chrater(xx, yy, app) {
         },
         Semicolon: () => {
           dir = 'left';
-          x = x + speedx;
           model = tankLeft;
+          x = x + speedx;
         },
         KeyZ: () => {
           this.fire();
