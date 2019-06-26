@@ -7,7 +7,6 @@ import Vegetation from './objects/vegetation';
 
 getSprites(spritesPath)
   .then((sprites) => {
-    console.log('======= get image: ', sprites);
     const canva = document.getElementById('cbox');
     const app = new App(canva, 'lightblue', sprites);
     const tank = new Tank(10, 10, app);
