@@ -62,6 +62,7 @@ export default function App(cont, bg, sprt) {
       const _observers = observers.draw.filter(el => el.name != id);
 
       _observers.map(ent => {
+        if (!ent.getOccupation) return;
         console.log(ent);
         const [ x1, y1, size1 ] = ent.getOccupation();
         const pos1 = [x1, y1];
