@@ -50,16 +50,19 @@ export default function Chrater(xx, yy, app) {
         KeyK: () => {
           dir = 'down'
           model = tankDown;
+          if (!app.isRoadFree(x, y + speedy, size, this.name)) return;
           y = y + speedy;
         },
         KeyL: () => {
           dir = 'up'
           model = tankUp;
+          if (!app.isRoadFree(x, y - speedy, size, this.name)) return;
           y = y - speedy;
         },
         Semicolon: () => {
           dir = 'left';
           model = tankLeft;
+          if (!app.isRoadFree(x + speedx, y, size, this.name)) return;
           x = x + speedx;
         },
         KeyZ: () => {
