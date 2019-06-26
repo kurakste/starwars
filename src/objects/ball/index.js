@@ -4,6 +4,7 @@ import randomStr from 'crypto-random-string';
 export default function Ball(xx, yy, speed, directions, app) {
   let x = xx;
   let y = yy;
+  let size = 32;
   const speedy = speed;
   const speedx = speedy * 1.5;
   let dir = directions || 'right';
@@ -33,6 +34,10 @@ export default function Ball(xx, yy, speed, directions, app) {
 
     outOfFieldCheck() {
       if (x <= 0 || x>= app.width || y<=0 || y>=app.height) app.removeFigure(this);
+    },
+
+    getgetOccupation() {
+      return [ x, y, size ]
     },
 
     ticker() {

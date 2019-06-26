@@ -6,6 +6,7 @@ import randomStr from 'crypto-random-string';
 export default function Chrater(xx, yy, app) {
   let x = xx;
   let y = yy;
+  let size = 32;
   let spi = 0;
   let spiMax = 5;
   let model = tankUp;
@@ -13,7 +14,7 @@ export default function Chrater(xx, yy, app) {
   let dir = 'up';
   const speedy = 5;
   const speedx = speedy * 1.5;
-  const id = randomStr({length: 20});
+  const id = randomStr({ length: 20 });
   const img = app.sprites;
 
   const out = {
@@ -42,7 +43,9 @@ export default function Chrater(xx, yy, app) {
         KeyJ: () => {
           model = tankRight;
           dir = 'right';
+          if (!app.isRoadFree(x - speedx, y, size, this.name)) return;
           x = x - speedx;
+
         },
         KeyK: () => {
           dir = 'down'
@@ -59,7 +62,7 @@ export default function Chrater(xx, yy, app) {
           x = x + speedx;
           model = tankLeft;
         },
-        Space: () => {
+        KeyZ: () => {
           this.fire();
           console.log(app);
         }
@@ -72,8 +75,12 @@ export default function Chrater(xx, yy, app) {
 
     fire: function () {
       fireState = 1;
-      const ball = new Ball(x,y, speedx+10, dir, app);
-      app.addFigure(ball); 
+      const ball = new Ball(x, y, speedx + 10, dir, app);
+      app.addFigure(ball);
+    },
+
+    getOccupation() {
+      return [x, y, size]
     },
 
     move: function (xx, yy) {
